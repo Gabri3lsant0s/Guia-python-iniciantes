@@ -26,18 +26,29 @@ class Mamifero(Animal):
     def emitir_som(self):
         return "Rugido"
 
+# Ave também herda da classe Animal.
+class Ave(Animal):
+
+    # A ave possui sua própria versão de método emitir_som().
+    def emitir_som(self):
+        return "Canto"
+
 # Esta função será chamada pelo main.py.
 def mostrar_exemplo():
 
-# criamos um objeto da classe Animal.
-    animal_generico = Animal("Animal genérico")
-
 #Criamos um objeto da classe Mamífero.
     leao = Mamifero("Leão")
+    canario = Ave("Canário")
 
-#cada objeto chama o método emitir_som().
-    print(f"{animal_generico.nome} emite: {animal_generico.emitir_som()}")
-    print(f"{leao.nome} emite: {leao.emitir_som()}")
+# A lista pode guardar objetos de classes diferente, desde que todos sejam animais.
+    animais =[leao, canario]
+
+# Para cada animal dentro da lista: 
+    for animal in animais:
+
+    # A mesma chamada de método gera resultados diferentes.
+    # Isso é polimorfismo.
+        print(f"{animal.nome} emite o som: {animal.emitir_som()}")
 
 # permite executar este arquivo sozinho para testar.
 if __name__ == "__main__":
