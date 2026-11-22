@@ -39,9 +39,34 @@ class Cachorro(Mamifero):
         self.raca = raca
             
             # Cachorro substitui o som que viria de Mamifero.
-        def emitir_som(self):
-            return "Latido"
-        
+    def emitir_som(self):
+        return "Latido"
+
+# Zoologico não herda de Animal, ele apeas guarda vários objetos Animal.
+class Zoologico:
+
+    def __init__(self, nome):
+        self.nome = nome
+
+        # Começamos com uma lista vazia de animais.
+        self.animais = []
+
+    def adicionar_animal(self, animal):
+
+        # append() adiciona o objeto Animal à lista de.
+        self.animais.append(animal)
+
+    def apresentar_animais(self):
+        print(f"\n--- Animais do {self.nome} ---")
+
+        # Percorre todos os anumais que o zoolómgico possui.
+        for animal in self.animais:
+            print(f"{animal.nome} emite o som: {animal.emitir_som()}")
+
+            # Mostra a raça apenas se o animal for um cachorro.
+            if isinstance(animal, Cachorro):
+                print(f"Raça: {animal.raca}")
+
 # Ave também herda da classe Animal.
 class Ave(Animal):
 
@@ -57,18 +82,16 @@ def mostrar_exemplo():
     canario = Ave("Canário")
     cachorro = Cachorro("Rex", "Labrador")
 
-# A lista pode guardar objetos de classes diferente, desde que todos sejam animais.
-    animais =[leao, canario, cachorro]
+# Criamos um zoológico
+    zoologico = Zoologico("Zoológico da Central")
 
-# Para cada animal dentro da lista: 
-    for animal in animais:
+# Adicionamos objetos de classes diferentes.
+    zoologico.adicionar_animal(leao)
+    zoologico.adicionar_animal(canario)
+    zoologico.adicionar_animal(cachorro)
 
-    # A mesma chamada de método gera resultados diferentes.
-    # Isso é polimorfismo.
-        print(f"{animal.nome} emite o som: {animal.emitir_som()}")
-
-    if isinstance(animal, Cachorro):
-            print(f"Raça: {animal.raca}")
+# Pedimos ao zoológico para apresentar seus animais.
+    zoologico.apresentar_animais()
 
 # permite executar este arquivo sozinho para testar.
 if __name__ == "__main__":
